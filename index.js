@@ -15,6 +15,13 @@ mongoose.connect("mongodb+srv://dhruv:Dhruv@cluster0.rapcoui.mongodb.net/blogDB"
 const app = express();
 const posts=[];
 
+app.use(function (req, res, next) {
+  res.setHeader(
+    'Content-Security-Policy',
+    "default-src 'self' 'self' 'unsafe-inline';"
+  );
+  next();
+});
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
